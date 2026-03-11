@@ -261,7 +261,9 @@ export async function execute(
 
   // ── Build command args ─────────────────────────────────────────────────
   // Use -Q (quiet) to get clean output: just response + session_id line
-  const args: string[] = ["chat", "-q", prompt, "-Q"];
+  const useQuiet = cfgBoolean(config.quiet) !== false; // default true
+  const args: string[] = ["chat", "-q", prompt];
+  if (useQuiet) args.push("-Q");
 
   args.push("-m", model);
 
