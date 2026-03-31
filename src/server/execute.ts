@@ -319,6 +319,7 @@ export async function execute(
   const model = cfgString(config.model) || DEFAULT_MODEL;
   const timeoutSec = cfgNumber(config.timeoutSec) || DEFAULT_TIMEOUT_SEC;
   const graceSec = cfgNumber(config.graceSec) || DEFAULT_GRACE_SEC;
+  const maxTurns = cfgNumber(config.maxTurnsPerRun);
   const toolsets = cfgString(config.toolsets) || cfgStringArray(config.enabledToolsets)?.join(",");
   const extraArgs = cfgStringArray(config.extraArgs);
   const persistSession = cfgBoolean(config.persistSession) !== false;
@@ -376,6 +377,10 @@ export async function execute(
     args.push("-t", toolsets);
   }
 
+  if (maxTurns && maxTurns > 0) {
+    args.push("--max-turns", String(maxTurns));
+  }
+
   if (worktreeMode) args.push("-w");
   if (checkpoints) args.push("--checkpoints");
   if (cfgBoolean(config.verbose) === true) args.push("-v");
@@ -430,7 +435,7 @@ export async function execute(
   // ── Log start ──────────────────────────────────────────────────────────
   await ctx.onLog(
     "stdout",
-    `[hermes] Starting Hermes Agent (model=${model}, provider=${resolvedProvider} [${resolvedFrom}], timeout=${timeoutSec}s)\n`,
+    `[hermes] Starting Hermes Agent (model=${model}, provider=${resolvedProvider} [${resolvedFrom}], timeout=${timeoutSec}s${maxTurns ? `, max_turns=${maxTurns}` : ""})\n`,
   );
   if (prevSessionId) {
     await ctx.onLog(

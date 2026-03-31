@@ -12,7 +12,7 @@ export const ADAPTER_LABEL = "Hermes Agent";
 export const HERMES_CLI = "hermes";
 
 /** Default timeout for a single execution run (seconds). */
-export const DEFAULT_TIMEOUT_SEC = 300;
+export const DEFAULT_TIMEOUT_SEC = 1800;
 
 /** Grace period after SIGTERM before SIGKILL (seconds). */
 export const DEFAULT_GRACE_SEC = 10;

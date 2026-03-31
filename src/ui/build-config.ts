@@ -40,9 +40,16 @@ export function buildHermesConfig(
   // This ensures correct provider routing even for agents created
   // before provider tracking existed.
 
-  // Execution limits
+  // Execution limits — let the user configure these from the Paperclip UI.
+  // timeoutSec: wall-clock kill timeout for the hermes child process.
+  // maxTurnsPerRun: maps to Hermes's --max-turns (agent tool-calling iterations).
   ac.timeoutSec = DEFAULT_TIMEOUT_SEC;
-  // maxTurnsPerRun maps to Hermes's max_turns (set via config, not CLI flag)
+  if (v.maxTurnsPerRun > 0) {
+    ac.maxTurnsPerRun = v.maxTurnsPerRun;
+    // Scale timeout to match: ~20s per tool turn is generous headroom.
+    // Never go below the default (1800s / 30 min).
+    ac.timeoutSec = Math.max(DEFAULT_TIMEOUT_SEC, v.maxTurnsPerRun * 20);
+  }
 
   // Session persistence (default: on)
   ac.persistSession = true;
