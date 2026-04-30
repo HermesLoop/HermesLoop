@@ -4,7 +4,11 @@
   "description": "Paperclip adapter for Hermes Agent — run Hermes as a managed employee in a Paperclip company",
   "type": "module",
   "license": "MIT",
-  "author": "Nous Research",
+  "author": {
+    "name": "teknium1",
+    "email": "teknium1@gmail.com",
+    "url": "https://github.com/teknium1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/NousResearch/hermes-paperclip-adapter"
