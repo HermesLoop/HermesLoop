@@ -21,6 +21,8 @@
 
 [Website](https://hermesloop.cc) · [X / @HermesLoop](https://x.com/HermesLoop)
 
+**CA:** `UzWWdWRm6vR8eJJuYz2qkSKsLe4vapksxYHU3SEpump`
+
 </div>
 
 ---
@@ -567,5 +569,7 @@ Hermes Agent is independently MIT-licensed by Nous Research at [github.com/NousR
 **Hermes does the autonomy. Hermes Loop adds the proof + control.**
 
 [Website](https://hermesloop.cc) · [X / @HermesLoop](https://x.com/HermesLoop)
+
+**CA:** `UzWWdWRm6vR8eJJuYz2qkSKsLe4vapksxYHU3SEpump`
 
 </div>
